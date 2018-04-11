@@ -4,13 +4,13 @@
 
 using namespace std;
 
-int Member :: counter = 0;
+int Member :: counter = 0; //counter to know how many members are
     
-Member :: Member(){
+Member :: Member(){ //constructor
     counter++;
 }   
 
-Member :: ~Member(){
+Member :: ~Member(){ //destructor
     counter--;
     for(int i=0; i<followers.size(); i++){
         followers[i]->unfollow(*this);
@@ -20,7 +20,7 @@ Member :: ~Member(){
     }
 }
 
-void Member :: follow (Member &name){
+void Member :: follow (Member &name){  //method to follow another member
 
     Member *p = &name;    
 
@@ -33,15 +33,15 @@ void Member :: follow (Member &name){
     name.followers.push_back(this);
 }
 
-int Member :: numFollowers (){
+int Member :: numFollowers (){ // returns the number of members that follow me
      return followers.size();
 }
 
-int Member :: numFollowing (){
+int Member :: numFollowing (){ // returns the number of members that I follow
     return following.size();
 }
 
-void Member :: unfollow(Member &name){
+void Member :: unfollow(Member &name){ //method to unfollow another member
     if(&name==this) return;
 
     for(int i=0; i<following.size(); i++){
@@ -57,6 +57,6 @@ void Member :: unfollow(Member &name){
     }
 }
 
-int Member :: count(){ 
+int Member :: count(){  // returns the number of members
     return counter;
 }
