@@ -23,6 +23,9 @@ Member :: ~Member(){
 void Member :: follow (Member &name){
 
     Member *p = &name;    
+
+    if(p==this) return;
+
     for(int i=0; i<following.size(); i++){
         if (following[i] == p) return;
     }
@@ -39,6 +42,8 @@ int Member :: numFollowing (){
 }
 
 void Member :: unfollow(Member &name){
+    if(&name==this) return;
+
     for(int i=0; i<following.size(); i++){
         if(following[i] == &name){
             following.erase(following.begin()+i);
